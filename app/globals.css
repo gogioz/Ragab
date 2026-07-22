@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0f172a;
+  --gold: #c8a96a;
+  --gold-light: #dfc08a;
+  --paper: #f8f7f4;
+  --ink: #111111;
+  --muted: #6b7280;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* ── Typography helpers ── */
+.font-display {
+  font-family: "Playfair Display", Georgia, serif;
+}
+.font-body {
+  font-family: "Source Sans 3", "Helvetica Neue", sans-serif;
+}
+
+/* ── Gold rule ── */
+.gold-rule {
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Scroll animation utility ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Grain overlay ── */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+/* ── Button base ── */
+.btn-primary {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+  cursor: pointer;
+  background: transparent;
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* ── Card hover ── */
+.card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+}
+
+/* ── Horizontal rule accent ── */
+.accent-line {
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Quote mark ── */
+.quote-mark {
+  font-family: var(--font-playfair), serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.3;
+  leading-trim: both;
+}
+
+/* ── Slider / carousel ── */
+.slider-container {
+  overflow: hidden;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Input styles ── */
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 1.5px solid #ddd;
+  background: white;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus {
+  border-color: var(--gold);
+}
+.form-input::placeholder {
+  color: var(--muted);
+}
+
+/* ── Navbar transition ── */
+.nav-scrolled {
+  box-shadow: 0 2px 24px rgba(15, 23, 42, 0.15);
+}
+
+/* ── Product slider dots ── */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.dot.active {
+  background: var(--gold);
+}
+
+/* ── Arabic / RTL Support ── */
+:lang(ar),
+[dir="rtl"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .font-display {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-weight: 700;
+}
+
+[dir="rtl"] .font-body,
+[dir="rtl"] .font-sans {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* Flip gradient direction in RTL */
+[dir="rtl"] .gold-rule {
+  background: linear-gradient(270deg, var(--gold), transparent);
+}
+
+/* Flip left vertical accent bar in RTL */
+[dir="rtl"] .border-l {
+  border-left: none;
+  border-right: inherit;
+}
